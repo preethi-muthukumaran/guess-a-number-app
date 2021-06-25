@@ -1,7 +1,9 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { View, Text, Button, StyleSheet} from 'react-native';
 import Card from '../comp/Card';
 import Colors from '../constants/colors';
+import { NavigationContainer } from '@react-navigation/native';
 
 const ConfirmInputScreen = props => {
     return(
@@ -13,14 +15,14 @@ const ConfirmInputScreen = props => {
                     <View style = {styles.button}>
                         <Button
                             title = "Yes"
-                            onPress = {() => {}} //navigate on to next game screen
+                            onPress = {} //navigate on to next game screen
                             color = {Colors.confirm}
                         />
                     </View>
                     <View style = {styles.button}>
                         <Button
                             title = "No"
-                            onPress = {() => {}} //navigate back to start screen with empty field
+                            onPress = {() => Navigation.navigate('Start')} //navigate back to start screen with empty field
                             color = {Colors.reject}
                         />
                     </View>

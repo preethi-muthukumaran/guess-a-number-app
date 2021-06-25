@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Header from './comp/Header';
 import StartGameScreen from './screens/StartGameScreen';
 import { NavigationContainer } from '@react-navigation/native';
+import ConfirmInputScreen from './screens/ConfirmInputScreen';
 
 export default function App() {
   return (
@@ -18,7 +19,7 @@ export default function App() {
         />
         <Stack.Screen
           name = "Confirm Input"
-          components = {}
+          components = {ConfirmInputScreen}
           options = {{title: 'ConfirmInput'}}
         />
       </Stack.Navigator>
