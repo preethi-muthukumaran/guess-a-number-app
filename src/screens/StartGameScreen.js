@@ -43,7 +43,13 @@ const StartGameScreen = props => {
     let confirmedInput;
 
     if (confirmed) {
-        confirmedInput = <Text>Selected Number: {selectedNumber}</Text>;
+        confirmedInput = 
+        <Card style = {styles.confirmContainer}> 
+            <Text style = {styles.headerText}>Selected Number</Text>
+            <Text>
+                {selectedNumber}
+            </Text>
+        </Card>
     }
 
     const resetInputHandler = () => {
@@ -119,6 +125,16 @@ const styles = StyleSheet.create({
     },
     button: {
         width: 100
+    },
+    confirmContainer: {
+        borderWidth: 10,
+        borderColor: Colors.primary,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10
+    }, 
+    headerText: {
+        paddingVertical: 5
     }
 });
 
