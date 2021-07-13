@@ -12,9 +12,9 @@ export default function App() {
     setUserNumber(selectedNumber);
   }
 
-  const content = <StartGameScreen onStartGame = {onStartGameHandler}/>;
+  let content = <StartGameScreen onStartGame = {onStartGameHandler}/>;
 
-  if (userNumber) {
+  if (!isNaN(userNumber)) {
     content = <GameScreen exclude = {userNumber}/>
   }
 
