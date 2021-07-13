@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Text, Button} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {View, StyleSheet, Text, Button, Alert} from 'react-native';
 import NumberContainer from '../comp/NumberContainer';
 import Card from '../comp/Card';
 import Color from '../constants/colors';
@@ -17,8 +17,35 @@ const generateRandomNumber = (min, max, exclude) => {
         return randomNumber;
     }
 }
+
 const GameScreen = props => {
     const [generatedNumber, setGeneratedNumber] = useState(generateRandomNumber(1, 100, props.exclude));
+    
+    const currentMin = useRef(1);
+    const currentMax = useRef(100);
+
+    const computerGuessHandler = (direction) => {
+        let falseLower = ( (direction === "lower") && (props.exclude < generatedNumber) );
+        let falseGreater = ( (direction === "greater") && (props.exclude > generatedNumber) );
+        
+        if (falseLower || falseGreater) {
+            let msg = "Are you sure that your entered number is " + direction.toUpperCase() + " than " + generatedNumber.toString();
+            Alert.alert("Something's not right...", msg, [{
+                text: "You Caught Me!",
+                style: 'cancel'
+            }])
+        } else {
+            
+            if (direction === "lower") {
+                currentMax.current = generatedNumber;
+            } else {
+                currentMin.current = generatedNumber;
+            }
+
+            generateRandomNumber(currentMin, currentMax, props.exclude);
+        }
+    }
+
 
     return(
         <View style = {styles.screen}>
@@ -27,23 +54,23 @@ const GameScreen = props => {
             <Card style={{...ContainerStyles.buttonContainer, ...styles.buttonContainer}}>
                 <View style={ContainerStyles.button}>
                     <Button
-                        title="LOWER"
-                        color={Color.warm}
-                        onPress={() => { }}
+                        title = "LOWER"
+                        color = {Color.warm}
+                        onPress = {computerGuessHandler("lower")}
                     />
                 </View>
                 <View style={ContainerStyles.button}>
                     <Button
-                        title="CORRECT!"
-                        color={Color.confirm}
-                        onPress={() => { }}
+                        title = "CORRECT!"
+                        color = {Color.confirm}
+                        onPress = {() => {}}
                     />
                 </View>
                 <View style={ContainerStyles.button}>
                     <Button
-                        title="GREATER"
-                        color={Color.cold}
-                        onPress={() => { }}
+                        title = "GREATER"
+                        color = {Color.cold}
+                        onPress = {computerGuessHandler("greater")}
                     />
                 </View>
             </Card>
