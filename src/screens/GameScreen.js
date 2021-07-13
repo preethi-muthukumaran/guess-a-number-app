@@ -21,38 +21,47 @@ const GameScreen = props => {
     const [generatedNumber, setGeneratedNumber] = useState(generateRandomNumber(1, 100, props.exclude));
 
     return(
-        <View>
+        <View style = {styles.screen}>
             <Text>Computer's Guess...</Text>
             <NumberContainer>{generatedNumber}</NumberContainer>
-            <Card>
-                <View style = {ContainerStyles.buttonContainer}>
-                    <View style = {ContainerStyles.button}>
-                        <Button
-                        title = "LOWER"
-                        color = {Color.warm}
-                        onPress = {() => {}}
-                        />
-                    </View>
-                    <View style = {ContainerStyles.button}>
-                        <Button
-                        title = "CORRECT!"
-                        color = {Color.confirm}
-                        onPress = {() => {}}
-                        />
-                    </View>
-                    <View style = {ContainerStyles.button}>
-                        <Button
-                        title = "GREATER"
-                        color = {Color.cold}
-                        onPress = {() => {}}
-                        />
-                    </View>
+            <Card style={{...ContainerStyles.buttonContainer, ...styles.buttonContainer}}>
+                <View style={ContainerStyles.button}>
+                    <Button
+                        title="LOWER"
+                        color={Color.warm}
+                        onPress={() => { }}
+                    />
+                </View>
+                <View style={ContainerStyles.button}>
+                    <Button
+                        title="CORRECT!"
+                        color={Color.confirm}
+                        onPress={() => { }}
+                    />
+                </View>
+                <View style={ContainerStyles.button}>
+                    <Button
+                        title="GREATER"
+                        color={Color.cold}
+                        onPress={() => { }}
+                    />
                 </View>
             </Card>
         </View>
     );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        padding: 10, 
+        alignItems: 'center'
+    },
+    buttonContainer: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    }
+});
 
 export default GameScreen;
