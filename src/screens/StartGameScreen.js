@@ -43,7 +43,6 @@ const StartGameScreen = props => {
     let confirmedInput;
 
     if (confirmed) {
-        {props.onStartGame(selectedNumber)}
         confirmedInput = 
         <Card style = {styles.confirmContainer}> 
             <Text style = {styles.headerText}>Selected Number</Text>
@@ -51,6 +50,7 @@ const StartGameScreen = props => {
                 {selectedNumber}
             </Text>
         </Card>
+        props.onStartGame(selectedNumber)
     }
 
     const resetInputHandler = () => {

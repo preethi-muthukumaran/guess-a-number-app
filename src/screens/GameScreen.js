@@ -25,11 +25,11 @@ const GameScreen = props => {
     const currentMax = useRef(100);
 
     const computerGuessHandler = (direction) => {
-        let falseLower = ( (direction === "lower") && (props.exclude < generatedNumber) );
-        let falseGreater = ( (direction === "greater") && (props.exclude > generatedNumber) );
+        let falseLower = ( (direction === "lower") && (props.exclude > generatedNumber) );
+        let falseGreater = ( (direction === "greater") && (props.exclude < generatedNumber) );
         
         if (falseLower || falseGreater) {
-            let msg = "Are you sure that your entered number is " + direction.toUpperCase() + " than " + generatedNumber.toString();
+            let msg = "Are you sure that your entered number is " + direction.toUpperCase() + " than " + generatedNumber.toString() + "?";
             Alert.alert("Something's not right...", msg, [{
                 text: "You Caught Me!",
                 style: 'cancel'
